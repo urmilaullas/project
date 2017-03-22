@@ -1,21 +1,21 @@
-echo enter the string
+len=0
+
+i=1
+echo "Enter a String: "
 read str
-s=$str
 len=`echo $str | wc -c`
 len=`expr $len - 1`
-echo length of the string is $len
-rev=""
-while [ $len -gt 0 ]
+halfLen=`expr $len / 2`
+while [ $i -le $halfLen ]
 do
-rev1=`echo $str | cut -c$len`
-rev=$rev$rev1
+c1=`echo $str|cut -c$i`
+c2=`echo $str|cut -c$len`
+if [ $c1 != $c2 ] ; then
+echo "string is not palindrome"
+exit
+fi
+i=`expr $i + 1`
 len=`expr $len - 1`
 done
-echo $rev
-if [ $str -eq $rev ]
-then
-	echo "$str is palindrome"
-else
-	echo "$str is not palindrome"
-fi
 
+echo "String is Palindrome"​
